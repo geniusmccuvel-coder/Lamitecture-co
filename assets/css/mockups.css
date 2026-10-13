@@ -1,0 +1,40 @@
+/* ==========================================================
+   Lamitecture & Co  |  browser frames and website screenshots
+   ========================================================== */
+.browser{
+  position:relative;overflow:hidden;
+  border-radius:18px;
+  background:#0b1636;
+  border:1px solid rgba(170,200,255,.2);
+  box-shadow:0 40px 90px -30px rgba(0,0,0,.85),0 0 0 1px rgba(255,255,255,.03),inset 0 1px 0 rgba(255,255,255,.08);
+}
+.bar{display:flex;align-items:center;gap:.9rem;height:2.55rem;padding:0 1rem;background:linear-gradient(180deg,#14224a,#0f1b3e);border-bottom:1px solid rgba(170,200,255,.12)}
+.dots{display:flex;gap:.4rem;flex:none}
+.dots i{width:.62rem;height:.62rem;border-radius:50%;background:rgba(170,200,255,.28)}
+.url{
+  position:relative;display:flex;align-items:center;justify-content:center;gap:.5rem;
+  flex:1;max-width:24rem;margin-inline:auto;height:1.6rem;padding:0 .8rem;border-radius:999px;
+  background:rgba(5,11,31,.7);color:#9fb2d4;font-size:.76rem;font-weight:600;letter-spacing:.01em;
+}
+.url svg{width:.78rem;height:.78rem;stroke:#7fe0a3;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.url .u{white-space:nowrap}
+.url .u2{position:absolute;left:0;right:0;text-align:center;opacity:0}
+.url:has(.u2) .u1{animation:urlA 12s infinite}
+.url .u2{animation:urlB 12s infinite}
+.url:has(.u2) svg{position:absolute;left:.8rem}
+@keyframes urlA{0%,38%{opacity:1}43%,93%{opacity:0}98%,100%{opacity:1}}
+@keyframes urlB{0%,43%{opacity:0}48%,88%{opacity:1}93%,100%{opacity:0}}
+
+/* the screenshot window */
+.screen{position:relative;overflow:hidden;background:#0b1636}
+.shot{display:block;width:100%;height:auto;transform-origin:50% 0;transition:transform 1.4s var(--ease)}
+.work-card:hover .shot,.work-card:focus-within .shot{transform:scale(1.02)}
+
+/* hero device: the two sites take turns */
+.device .screen{aspect-ratio:17/10}
+.slide{position:absolute;inset:0;overflow:hidden}
+.slide img{display:block;width:100%;height:100%;object-fit:cover;object-position:left top}
+.slide.s1{animation:slideA 12s infinite}
+.slide.s2{animation:slideB 12s infinite}
+@keyframes slideA{0%,38%{opacity:1}43%,93%{opacity:0}98%,100%{opacity:1}}
+@keyframes slideB{0%,43%{opacity:0}48%,88%{opacity:1}93%,100%{opacity:0}}

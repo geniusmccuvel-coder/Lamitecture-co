@@ -1,26 +1,59 @@
 /* ==========================================================
    Lamitecture & Co  |  browser frames and website screenshots
+   The address bar copies a modern desktop browser toolbar:
+   three rounded islands on a near black strip.
    ========================================================== */
 .browser{
-  position:relative;overflow:hidden;
+  position:relative;overflow:hidden;container-type:inline-size;
   border-radius:18px;
-  background:#0b1636;
+  background:#030716;
   border:1px solid rgba(170,200,255,.2);
   box-shadow:0 40px 90px -30px rgba(0,0,0,.85),0 0 0 1px rgba(255,255,255,.03),inset 0 1px 0 rgba(255,255,255,.08);
 }
-.bar{display:flex;align-items:center;gap:.9rem;height:2.55rem;padding:0 1rem;background:linear-gradient(180deg,#14224a,#0f1b3e);border-bottom:1px solid rgba(170,200,255,.12)}
-.url{
-  position:relative;display:flex;align-items:center;justify-content:center;gap:.5rem;
-  flex:1;max-width:24rem;margin-inline:auto;height:1.6rem;padding:0 .8rem;border-radius:999px;
-  background:rgba(5,11,31,.7);color:#9fb2d4;font-size:.76rem;font-weight:600;letter-spacing:.01em;
+
+/* the toolbar */
+.bar{
+  display:flex;gap:3px;padding:3px 3px 4px;background:#030716;
+  font-family:'Segoe UI',system-ui,-apple-system,Roboto,'Helvetica Neue',Arial,sans-serif;
+  user-select:none;
 }
-.url svg{width:.78rem;height:.78rem;stroke:#7fe0a3;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
-.url .u{white-space:nowrap;color:#e6eeff}
-.url .sch{font-style:normal;color:#8da2c9}
-.url .u2{position:absolute;left:0;right:0;text-align:center;opacity:0}
+.bar i,.bar b{font-style:normal}
+.bar svg{width:1.05rem;height:1.05rem;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.isl{display:flex;align-items:center;height:2.85rem;background:#2b324a;border-radius:.95rem}
+
+/* island 1: arrows, address field, tools */
+.isl-main{flex:1;min-width:0;padding:0 .5rem 0 .3rem}
+.bnav{display:flex;align-items:center;flex:none}
+.nb{display:grid;place-items:center;width:2rem;height:2rem;color:#dedfe3}
+.nb.fwd{color:#64697b}
+.url{
+  position:relative;flex:1;min-width:0;display:flex;align-items:center;gap:.65rem;
+  height:2.1rem;margin:0 .55rem 0 .3rem;padding:0 .85rem;
+  border-radius:.6rem;background:#465077;color:#fff;
+}
+.url svg{width:.95rem;height:.95rem;stroke:#fff;stroke-width:1.9}
+.url .u{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:.86rem;font-weight:500;color:#fff;letter-spacing:.005em}
+.url .sch{color:#b4c1cc;font-weight:400}
+.url .u2{position:absolute;left:2.45rem;top:50%;transform:translateY(-50%);opacity:0}
 .url:has(.u2) .u1{animation:urlA 12s infinite}
 .url .u2{animation:urlB 12s infinite}
-.url:has(.u2) svg{position:absolute;left:.8rem}
+.tools{display:flex;align-items:center;flex:none}
+.tb{display:grid;place-items:center;width:2rem;height:2rem;color:#ced1d2;border-radius:.55rem}
+.tb.me{width:2.15rem;height:2.15rem;margin-left:.1rem;background:#3e476a}
+
+/* island 2: the violet bar */
+.isl-accent{flex:none;width:2.3rem;justify-content:center}
+.isl-accent b{display:block;width:.42rem;height:1.6rem;border-radius:.3rem;background:#4f1fff;box-shadow:0 0 14px rgba(79,31,255,.55)}
+
+/* island 3: AI */
+.isl-ai{flex:none;gap:.4rem;padding:0 1.05rem 0 .95rem;color:#ced1d2;font-size:.9rem;font-weight:500}
+.isl-ai svg{width:1.15rem;height:1.15rem}
+
+/* make room on narrower frames */
+@container (max-width:800px){ .t-edit,.t-cam{display:none} }
+@container (max-width:660px){ .isl-ai,.t-play{display:none} }
+@container (max-width:520px){ .tools,.isl-accent,.nb.fwd{display:none} .isl-main{padding-right:.35rem} .url .u{font-size:.8rem} }
+
 @keyframes urlA{0%,38%{opacity:1}43%,93%{opacity:0}98%,100%{opacity:1}}
 @keyframes urlB{0%,43%{opacity:0}48%,88%{opacity:1}93%,100%{opacity:0}}
 

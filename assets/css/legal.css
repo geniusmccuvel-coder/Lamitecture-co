@@ -2,7 +2,7 @@
     --navy-deep:#050b1f; --navy:#0b1a3d; --navy-mid:#13275c;
     --steel:#4a6da8; --silver:#c9d6ea; --moon:#eef4ff; --glow:#7fb8ff;
     --hair:rgba(201,214,234,0.14); --hair-strong:rgba(201,214,234,0.28);
-    --logo: url('../img/logo.png');
+    --logo: url('../img/logo-mark-96.png');
   }
   *{ box-sizing:border-box; margin:0; padding:0; }
   body{ font-family:'Inter',sans-serif; background:var(--navy-deep); color:var(--moon); line-height:1.7; }

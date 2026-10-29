@@ -7,8 +7,8 @@
   position:relative;overflow:hidden;container-type:inline-size;
   border-radius:18px;
   background:#030716;
-  border:1px solid rgba(170,200,255,.2);
-  box-shadow:0 40px 90px -30px rgba(0,0,0,.85),0 0 0 1px rgba(255,255,255,.03),inset 0 1px 0 rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.25);
+  box-shadow:0 36px 70px -28px rgba(2,8,50,.9);
 }
 
 /* the toolbar */
@@ -34,9 +34,6 @@
 .url svg{width:.95rem;height:.95rem;stroke:#fff;stroke-width:1.9}
 .url .u{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:.86rem;font-weight:500;color:#fff;letter-spacing:.005em}
 .url .sch{color:#b4c1cc;font-weight:400}
-.url .u2{position:absolute;left:2.45rem;top:50%;transform:translateY(-50%);opacity:0}
-.url:has(.u2) .u1{animation:urlA 12s infinite}
-.url .u2{animation:urlB 12s infinite}
 .tools{display:flex;align-items:center;flex:none}
 .tb{display:grid;place-items:center;width:2rem;height:2rem;color:#ced1d2;border-radius:.55rem}
 .tb.me{width:2.15rem;height:2.15rem;margin-left:.1rem;background:#3e476a}
@@ -54,19 +51,7 @@
 @container (max-width:660px){ .isl-ai,.t-play{display:none} }
 @container (max-width:520px){ .tools,.isl-accent,.nb.fwd{display:none} .isl-main{padding-right:.35rem} .url .u{font-size:.8rem} }
 
-@keyframes urlA{0%,38%{opacity:1}43%,93%{opacity:0}98%,100%{opacity:1}}
-@keyframes urlB{0%,43%{opacity:0}48%,88%{opacity:1}93%,100%{opacity:0}}
 
 /* the screenshot window */
-.screen{position:relative;overflow:hidden;background:#0b1636}
-.shot{display:block;width:100%;height:auto;transform-origin:50% 0;transition:transform 1.4s var(--ease)}
-.work-card:hover .shot,.work-card:focus-within .shot{transform:scale(1.02)}
-
-/* hero device: the two sites take turns */
-.device .screen{aspect-ratio:17/10}
-.slide{position:absolute;inset:0;overflow:hidden}
-.slide img{display:block;width:100%;height:100%;object-fit:cover;object-position:left top}
-.slide.s1{animation:slideA 12s infinite}
-.slide.s2{animation:slideB 12s infinite}
-@keyframes slideA{0%,38%{opacity:1}43%,93%{opacity:0}98%,100%{opacity:1}}
-@keyframes slideB{0%,43%{opacity:0}48%,88%{opacity:1}93%,100%{opacity:0}}
+.screen{position:relative;overflow:hidden;background:#fff}
+.shot{display:block;width:100%;height:auto}

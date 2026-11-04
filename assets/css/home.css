@@ -123,3 +123,12 @@
   .contact-list a{grid-template-columns:10rem 1fr auto;align-items:center;gap:1.5rem;padding:1.35rem .5rem}
   .c-action{justify-self:end;margin-top:0}
 }
+
+/* phones: keep the two hero buttons side by side */
+@media (max-width:599px){
+  .hero-cta{flex-wrap:nowrap;gap:.6rem}
+  .hero-cta .btn{flex:1 1 0;min-width:0;min-height:3.1rem;padding-inline:.7rem;font-size:.92rem}
+}
+@media (max-width:380px){
+  .hero-cta .btn{padding-inline:.45rem;font-size:.84rem}
+}

@@ -32,7 +32,7 @@
 
 /* proof right under the promise */
 .hero-proof{display:flex;flex-wrap:wrap;align-items:center;gap:.9rem 1.2rem;margin-top:2.4rem;padding-top:1.3rem;border-top:1px solid var(--line)}
-.hero-proof p{font-size:.92rem;color:var(--muted);font-weight:600}
+.hero-proof p{font-size:.95rem;color:var(--muted);font-weight:600}
 .hero-proof ul{display:flex;gap:.7rem}
 .proof{display:grid;place-items:center;height:3.3rem;padding:.3rem .9rem;border-radius:12px;border:1px solid var(--line);transition:border-color .3s}
 .proof img{height:2.6rem;width:auto}
@@ -60,6 +60,12 @@
 
 /* phones: headline up top, buttons low where the thumb rests */
 @media (max-width:999px){
+  .hero h1,.statement-text,.project h3,.about-copy h2,.finale h2{letter-spacing:0}
+  /* the widest line is about 8.3 times the type size, so size it to the screen and keep three lines */
+  .hero h1{font-size:min(calc((100vw - 2.5rem) / 8.6),3.6rem);line-height:1.05}
+  .hero h1 .ln{white-space:nowrap}
+  /* fainter construction lines so they never cut through letters */
+  .hero-atmos{opacity:.55}
   .hero{padding-top:6.5rem;padding-bottom:2rem}
   .hero-copy{display:flex;flex-direction:column;min-height:calc(100svh - 14rem)}
   .hero-cta{margin-top:auto;padding-top:2rem}
@@ -67,9 +73,10 @@
 }
 @media (max-width:599px){
   .hero-cta{flex-wrap:nowrap;gap:.6rem}
-  .hero-cta .btn{flex:1 1 0;min-width:0;min-height:3.1rem;padding-inline:.7rem;font-size:.92rem}
+  .hero-cta .btn{flex:1 1 0;min-width:0;min-height:3.2rem;padding-inline:.6rem;font-size:.95rem}
 }
-@media (max-width:380px){.hero-cta .btn{padding-inline:.45rem;font-size:.84rem}}
+@media (max-width:380px){.hero-cta .btn{padding-inline:.4rem;font-size:.95rem}}
+@media (max-width:340px){.hero-cta .btn{font-size:.9rem}}
 
 /* ================= WEBSITES WE'VE BUILT (65 / 35) ================= */
 .work{background:var(--bg-2)}

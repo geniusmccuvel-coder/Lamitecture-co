@@ -9,16 +9,16 @@ header{padding:18px 0;border-bottom:1px solid var(--line);position:sticky;top:0;
 header .wrap{display:flex;align-items:center;justify-content:space-between;max-width:1000px}
 .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;color:#fff;text-decoration:none}
 .brand .mark{width:46px;height:28px;background-image:url('../img/logo-mark-96.png');background-size:contain;background-repeat:no-repeat;background-position:center}
-.back{font-size:14px;font-weight:700;color:#fff;text-decoration:none;border-bottom:2px solid var(--tomato)}
+.back{font-size:15px;font-weight:700;color:#fff;text-decoration:none;border-bottom:2px solid var(--tomato)}
 main{padding:70px 0 110px}
 h1{font-size:clamp(32px,4.6vw,46px);margin-bottom:14px}
-.updated{font-size:13px;color:var(--muted);margin-bottom:50px}
+.updated{font-size:15px;color:var(--muted);margin-bottom:50px}
 section{margin-bottom:56px}
 h2{font-size:24px;letter-spacing:-.02em;margin-bottom:16px;border-bottom:2px solid var(--line);padding-bottom:10px}
 h3{font-size:15px;margin:22px 0 8px;color:#fff}
 p,li{font-size:15.5px;color:var(--on-blue);margin-bottom:12px}
 ul{padding-left:22px;list-style:disc}
-.toc{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:56px;font-size:14px;font-weight:700}
+.toc{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:56px;font-size:15px;font-weight:700}
 .toc a{text-decoration:none;border-bottom:2px solid var(--tomato)}
-footer{background:var(--royal-deep);color:rgba(255,255,255,.78);padding:34px 0;text-align:center;font-size:13px}
+footer{background:var(--royal-deep);color:rgba(255,255,255,.78);padding:34px 0;text-align:center;font-size:15px}
 footer a{color:#fff}

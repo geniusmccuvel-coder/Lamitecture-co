@@ -7,10 +7,10 @@ ol{list-style:none}
 
 /* page top */
 .phero{padding:clamp(7.5rem,13vw,10rem) 0 clamp(2.5rem,6vw,4rem)}
-.crumbs ol{display:flex;flex-wrap:wrap;gap:.1rem .5rem;font-size:.88rem;color:rgba(255,255,255,.8);margin-bottom:1.5rem}
+.crumbs ol{display:flex;flex-wrap:wrap;gap:.1rem .5rem;font-size:.95rem;color:rgba(255,255,255,.8);margin-bottom:1.5rem}
 .crumbs li+li::before{content:"/";margin-right:.5rem;opacity:.55}
 .crumbs a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
-.phero h1{font-size:clamp(2.2rem,5.4vw,4.1rem);line-height:1.04;letter-spacing:-.045em;max-width:20ch;text-wrap:balance}
+.phero h1{font-size:clamp(2.2rem,5.4vw,4.1rem);line-height:1.06;letter-spacing:-.02em;max-width:20ch;text-wrap:balance}
 .phero .lede{max-width:44rem;margin-top:1.3rem;color:var(--on-blue)}
 .phero-cta{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:1.8rem}
 
@@ -68,7 +68,7 @@ ol{list-style:none}
 .cs-shot{max-width:1060px;margin:2.2rem auto 0}
 .facts{display:grid;gap:0;margin-top:2.2rem;border-top:1px solid var(--line-2)}
 .facts div{padding:1rem 0;border-bottom:1px solid var(--line)}
-.facts dt{font-size:.8rem;color:rgba(255,255,255,.75);margin-bottom:.2rem}
+.facts dt{font-size:.95rem;color:var(--muted);margin-bottom:.2rem}
 .facts dd{font-weight:700}
 .facts a{text-decoration:underline;text-decoration-color:var(--tomato);text-decoration-thickness:2px;text-underline-offset:3px}
 @media (min-width:820px){.facts{grid-template-columns:repeat(4,1fr);gap:2rem}.facts div{border-bottom:0;padding:1.2rem 0}}
@@ -79,3 +79,5 @@ ol{list-style:none}
 .lost{min-height:70vh;display:grid;place-items:center;text-align:center;padding:9rem 0 4rem}
 .lost h1{font-size:clamp(2.4rem,6vw,4.5rem);margin-bottom:1rem}
 .lost .hero-cta{margin-top:2rem;display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap}
+
+@media (max-width:899px){.phero h1{letter-spacing:0}}

@@ -16,10 +16,10 @@
   --tomato-deep:#98191f;
   --white:#ffffff;
   --text:#ffffff;
-  --muted:rgba(255,255,255,.8);
+  --muted:rgba(255,255,255,.86);
   --line:rgba(255,255,255,.2);
   --line-2:rgba(255,255,255,.4);
-  --on-blue:rgba(255,255,255,.86);
+  --on-blue:rgba(255,255,255,.92);
   --whatsapp:#0f8a43;
   --font:'Archivo',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
   --serif:'Bodoni Moda','Bodoni 72',Didot,Georgia,'Times New Roman',serif;
@@ -59,6 +59,14 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 /* ---------- type ---------- */
 h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:-.015em;line-height:1.04;color:#fff;text-wrap:balance}
+/* Bodoni Moda has an optical size setting: lower values give sturdier strokes that stay readable */
+:root{--opsz:28}
+h1,h2,.project h3,.about-sign,.footer-brand p{font-variation-settings:"opsz" var(--opsz)}
+@media (max-width:899px){
+  :root{--opsz:11}
+  h1,h2{letter-spacing:0}
+  body{line-height:1.7}
+}
 h3{font-family:var(--font);font-weight:700;letter-spacing:-.01em;line-height:1.25;color:#fff}
 h2{font-size:clamp(2.1rem,4.6vw,3.4rem)}
 h3{font-size:1.25rem}
@@ -89,7 +97,7 @@ h3{font-size:1.25rem}
 /* outline */
 .btn-glass{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.55);color:#fff}
 .btn-glass:hover{background:rgba(255,255,255,.16);border-color:#fff;box-shadow:0 0 32px rgba(255,255,255,.18)}
-.btn-sm{min-height:2.55rem;padding:.55rem 1.15rem;font-size:.92rem}
+.btn-sm{min-height:2.7rem;padding:.6rem 1.2rem;font-size:.95rem}
 .btn-lg{min-height:3.5rem;padding:1rem 2.1rem;font-size:1.05rem}
 
 /* text links: a faint line at rest, a red underline that grows from the centre on hover */
@@ -157,7 +165,7 @@ h3{font-size:1.25rem}
   -webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);
   box-shadow:0 18px 40px -16px rgba(2,8,40,.9);
 }
-.dock a{flex:1;text-align:center;padding:.72rem .4rem;border-radius:999px;font-weight:700;font-size:.88rem;color:rgba(255,255,255,.82);transition:background .35s var(--ease-lux),color .35s}
+.dock a{flex:1;text-align:center;padding:.72rem .3rem;border-radius:999px;font-weight:700;font-size:.95rem;color:rgba(255,255,255,.82);transition:background .35s var(--ease-lux),color .35s}
 .dock a:hover{color:#fff}
 .dock a.is-active{background:#fff;color:var(--royal)}
 @media (max-width:899px){
@@ -174,10 +182,10 @@ h3{font-size:1.25rem}
 .footer-brand strong{display:block;font-size:1.1rem;letter-spacing:-.02em;color:#fff}
 .footer-brand p{color:rgba(255,255,255,.8);font-family:var(--serif);font-style:italic;font-size:1.15rem;line-height:1.2}
 .footer-col{display:flex;flex-direction:column;gap:.55rem}
-.footer-h{font-weight:800;font-size:.9rem;color:#fff;margin-bottom:.35rem}
+.footer-h{font-weight:800;font-size:1rem;color:#fff;margin-bottom:.35rem}
 .footer-col a{color:rgba(255,255,255,.78);font-size:.95rem;font-weight:500;transition:color .2s}
 .footer-col a:hover{color:#fff;text-decoration:underline;text-decoration-color:var(--tomato);text-decoration-thickness:2px;text-underline-offset:4px}
-.footer-legal{grid-column:1 / -1;color:rgba(255,255,255,.62);font-size:.85rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.16)}
+.footer-legal{grid-column:1 / -1;color:rgba(255,255,255,.78);font-size:.95rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.16)}
 @media (min-width:860px){
   .footer-grid{grid-template-columns:1.5fr 1fr 1fr 1fr;align-items:start}
   .footer-brand{grid-column:auto}

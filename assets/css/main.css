@@ -25,6 +25,8 @@
   --serif:'Bodoni Moda','Bodoni 72',Didot,Georgia,'Times New Roman',serif;
   --line-soft:rgba(255,255,255,.08);
   --ease:cubic-bezier(.2,.7,.2,1);
+  --ease-lux:cubic-bezier(.22,1,.36,1);
+  --ease-cine:cubic-bezier(.16,1,.3,1);
   --sy:0;
   --tilt:0;
 }
@@ -56,7 +58,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .skip:focus{top:1rem}
 
 /* ---------- type ---------- */
-h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:-.015em;line-height:1.04;color:#fff}
+h1,h2{font-family:var(--serif);font-weight:700;letter-spacing:-.015em;line-height:1.04;color:#fff;text-wrap:balance}
 h3{font-family:var(--font);font-weight:700;letter-spacing:-.01em;line-height:1.25;color:#fff}
 h2{font-size:clamp(2.1rem,4.6vw,3.4rem)}
 h3{font-size:1.25rem}
@@ -64,24 +66,37 @@ h3{font-size:1.25rem}
 
 /* ---------- buttons ---------- */
 .btn{
+  position:relative;isolation:isolate;overflow:hidden;
   display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
   min-height:3.1rem;padding:.85rem 1.7rem;
   border-radius:999px;font-weight:700;font-size:1rem;letter-spacing:0;
   white-space:nowrap;border:1.5px solid transparent;
-  transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .3s,border-color .3s,color .3s;
+  transition:transform .4s var(--ease-lux),box-shadow .4s var(--ease-lux),background .3s,border-color .3s,color .3s;
 }
+/* a soft band of light that sweeps across on hover */
+.btn::before{content:"";position:absolute;top:-10%;bottom:-10%;left:0;width:45%;z-index:-1;pointer-events:none;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.38),transparent);transform:translateX(-160%) skewX(-20deg);transition:transform .7s var(--ease-lux)}
+.btn:hover::before{transform:translateX(330%) skewX(-20deg)}
+.btn:hover{transform:scale(1.03)}
 .btn svg{width:1.05em;height:1.05em;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 /* the one action we want: tomato red, with a light edge so it stands out on blue */
 .btn-red{background:var(--tomato);color:#fff;border-color:rgba(255,255,255,.4);box-shadow:0 12px 28px -12px rgba(6,10,60,.8)}
-.btn-red:hover{background:var(--tomato-deep);border-color:#fff;transform:translateY(-2px);box-shadow:0 18px 34px -12px rgba(6,10,60,.9)}
+.btn-red:hover{border-color:#fff;box-shadow:0 0 38px rgba(187,35,43,.55),0 14px 30px -12px rgba(6,10,60,.9)}
 /* white buttons */
 .btn-blue,.btn-light{background:#fff;color:var(--royal);box-shadow:0 12px 28px -14px rgba(6,10,60,.8)}
-.btn-blue:hover,.btn-light:hover{background:#e9edff;transform:translateY(-2px);box-shadow:0 18px 34px -14px rgba(6,10,60,.9)}
+.btn-blue::before,.btn-light::before{background:linear-gradient(105deg,transparent,rgba(32,48,154,.14),transparent)}
+.btn-blue:hover,.btn-light:hover{box-shadow:0 0 38px rgba(255,255,255,.35),0 14px 30px -14px rgba(6,10,60,.9)}
 /* outline */
 .btn-glass{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.55);color:#fff}
-.btn-glass:hover{transform:translateY(-2px);background:rgba(255,255,255,.18);border-color:#fff}
+.btn-glass:hover{background:rgba(255,255,255,.16);border-color:#fff;box-shadow:0 0 32px rgba(255,255,255,.18)}
 .btn-sm{min-height:2.55rem;padding:.55rem 1.15rem;font-size:.92rem}
 .btn-lg{min-height:3.5rem;padding:1rem 2.1rem;font-size:1.05rem}
+
+/* text links: a faint line at rest, a red underline that grows from the centre on hover */
+.text-link{font-weight:700;font-size:.95rem;color:#fff;padding-bottom:.2rem;
+  background:linear-gradient(var(--tomato),var(--tomato)) 50% 100%/0% 2px no-repeat,linear-gradient(rgba(255,255,255,.4),rgba(255,255,255,.4)) 0 100%/100% 1px no-repeat;
+  transition:background-size .3s var(--ease-lux)}
+.text-link:hover,a:hover > .text-link{background-size:100% 2px,100% 1px}
 
 /* ---------- navigation ---------- */
 .nav{
@@ -94,8 +109,9 @@ h3{font-size:1.25rem}
   border:1px solid var(--line);
   -webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);
   box-shadow:0 14px 34px -16px rgba(4,8,50,.85);
-  transition:background .35s,border-color .35s;
+  transition:transform .5s var(--ease-lux),background .35s,border-color .35s;
 }
+.nav.is-hidden{transform:translate(-50%,-160%);transition:transform .5s var(--ease-lux)}
 .nav.scrolled{background:rgba(12,19,71,.95);border-color:var(--line-2)}
 .brand{display:flex;align-items:center;gap:.7rem;font-weight:800;letter-spacing:-.02em;font-size:1.02rem;white-space:nowrap;color:#fff}
 .brand img{height:28px;width:auto}
@@ -133,6 +149,23 @@ h3{font-size:1.25rem}
   .burger,.menu{display:none}
 }
 
+/* ---------- bottom dock (phones) ---------- */
+.dock{
+  position:fixed;left:50%;bottom:calc(.75rem + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:65;
+  display:flex;gap:.15rem;width:min(26rem,calc(100% - 1.5rem));padding:.3rem;border-radius:999px;
+  background:rgba(12,19,71,.86);border:1px solid var(--line-2);
+  -webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);
+  box-shadow:0 18px 40px -16px rgba(2,8,40,.9);
+}
+.dock a{flex:1;text-align:center;padding:.72rem .4rem;border-radius:999px;font-weight:700;font-size:.88rem;color:rgba(255,255,255,.82);transition:background .35s var(--ease-lux),color .35s}
+.dock a:hover{color:#fff}
+.dock a.is-active{background:#fff;color:var(--royal)}
+@media (max-width:899px){
+  body{padding-bottom:5.5rem}
+  .burger,.menu{display:none!important}
+}
+@media (min-width:900px){.dock{display:none}}
+
 /* ---------- footer ---------- */
 .footer{padding:3.5rem 0 2.5rem;background:var(--royal-deep);color:#fff}
 .footer-grid{display:grid;gap:2.2rem 1.5rem;grid-template-columns:1fr 1fr}
@@ -163,6 +196,7 @@ h3{font-size:1.25rem}
 .wa-float:hover{transform:translateY(-3px);box-shadow:0 22px 38px -10px rgba(2,10,40,.85)}
 .wa-float svg{width:1.7rem;height:1.7rem;fill:currentColor}
 .wa-float span{display:none}
+@media (max-width:899px){.wa-float{bottom:calc(5.4rem + env(safe-area-inset-bottom,0px))}}
 @media (min-width:640px){
   .wa-float{padding:.8rem 1.25rem .8rem .95rem}
   .wa-float span{display:inline}
@@ -172,4 +206,6 @@ h3{font-size:1.25rem}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal,.reveal-card{opacity:1!important;transform:none!important;filter:none!important}
+  .nav.is-hidden{transform:translateX(-50%)!important}
 }

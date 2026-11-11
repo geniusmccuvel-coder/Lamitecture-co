@@ -32,7 +32,8 @@
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:5.5rem;background:var(--bg)}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:5.5rem;background:var(--bg);-webkit-tap-highlight-color:transparent}
+a,button,summary{touch-action:manipulation}
 body{
   font-family:var(--font);
   font-size:1rem;
@@ -52,7 +53,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 :focus-visible{outline:3px solid #fff;outline-offset:3px;border-radius:6px}
 
-.wrap{width:min(1200px,calc(100% - 2.5rem));margin-inline:auto}
+.wrap{width:min(1200px,calc(100% - 2.5rem - env(safe-area-inset-left,0px) - env(safe-area-inset-right,0px)));margin-inline:auto}
 .visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .skip{position:fixed;left:1rem;top:-4rem;z-index:100;background:#fff;color:var(--royal);padding:.7rem 1.1rem;border-radius:999px;font-weight:700;transition:top .2s}
 .skip:focus{top:1rem}
@@ -105,10 +106,13 @@ h3{font-size:1.25rem}
   background:linear-gradient(var(--tomato),var(--tomato)) 50% 100%/0% 2px no-repeat,linear-gradient(rgba(255,255,255,.4),rgba(255,255,255,.4)) 0 100%/100% 1px no-repeat;
   transition:background-size .3s var(--ease-lux)}
 .text-link:hover,a:hover > .text-link{background-size:100% 2px,100% 1px}
+/* a bigger invisible touch area without moving anything */
+a.text-link{position:relative}
+a.text-link::after{content:"";position:absolute;inset:-.75rem -.4rem}
 
 /* ---------- navigation ---------- */
 .nav{
-  position:fixed;top:.75rem;left:50%;transform:translateX(-50%);z-index:60;
+  position:fixed;top:calc(.75rem + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);z-index:60;
   width:min(1160px,calc(100% - 1.25rem));
   display:flex;align-items:center;justify-content:space-between;gap:1rem;
   padding:.45rem .5rem .45rem 1rem;
@@ -121,7 +125,7 @@ h3{font-size:1.25rem}
 }
 .nav.is-hidden{transform:translate(-50%,-160%);transition:transform .5s var(--ease-lux)}
 .nav.scrolled{background:rgba(12,19,71,.95);border-color:var(--line-2)}
-.brand{display:flex;align-items:center;gap:.7rem;font-weight:800;letter-spacing:-.02em;font-size:1.02rem;white-space:nowrap;color:#fff}
+.brand{display:flex;align-items:center;gap:.7rem;min-height:44px;font-weight:800;letter-spacing:-.02em;font-size:1.02rem;white-space:nowrap;color:#fff}
 .brand img{height:28px;width:auto}
 .nav-links{display:none}
 .nav-cta{display:none}
@@ -193,7 +197,7 @@ h3{font-size:1.25rem}
 
 /* ---------- floating WhatsApp button ---------- */
 .wa-float{
-  position:fixed;right:1rem;bottom:1rem;z-index:70;
+  position:fixed;right:calc(1rem + env(safe-area-inset-right,0px));bottom:calc(1rem + env(safe-area-inset-bottom,0px));z-index:70;
   display:inline-flex;align-items:center;gap:.6rem;
   padding:.8rem;border-radius:999px;
   background:var(--whatsapp);color:#fff;font-weight:800;font-size:.95rem;
@@ -208,6 +212,25 @@ h3{font-size:1.25rem}
 @media (min-width:640px){
   .wa-float{padding:.8rem 1.25rem .8rem .95rem}
   .wa-float span{display:inline}
+}
+
+
+/* ---------- touch screens ---------- */
+@media (hover:none){
+  /* hover effects would stay stuck after a tap, so switch them off */
+  .btn:hover{transform:none}
+  .btn:hover::before{transform:translateX(-160%) skewX(-20deg)}
+  .text-link:hover,a:hover > .text-link{background-size:0% 2px,100% 1px}
+  /* clear feedback the moment a finger presses */
+  .btn:active{transform:scale(.97);transition-duration:.12s}
+  a:not(.btn):active{opacity:.72}
+  .dock a:active{background:rgba(255,255,255,.16)}
+}
+@media (max-width:899px){
+  html{scroll-padding-bottom:6rem}
+  .footer-col{gap:0}
+  .footer-col a{display:flex;align-items:center;min-height:44px;font-size:1rem}
+  .footer-h{margin-bottom:.1rem}
 }
 
 /* ---------- reduced motion ---------- */

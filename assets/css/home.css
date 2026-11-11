@@ -46,7 +46,7 @@
 .proof img{height:2.6rem;width:auto}
 .proof-fx{background:#000}
 .proof-tc{background:#fff}
-.proof:hover{border-color:#fff}
+@media (hover:hover){.proof:hover{border-color:#fff}}
 
 /* floating architecture: glow, glass, then two real websites */
 .hero-stage{position:relative;display:none;aspect-ratio:16/12}
@@ -93,7 +93,7 @@
 .project-shot .browser{transition:box-shadow .6s var(--ease-lux)}
 .project-shot:hover .browser{box-shadow:0 0 0 2px #fff,0 36px 70px -28px rgba(2,8,50,.95)}
 .project .shot{transition:transform 1s var(--ease-lux),filter 1.2s var(--ease-lux),opacity 1.2s var(--ease-lux)}
-.project-shot:hover .shot{transform:scale(1.04)}
+@media (hover:hover){.project-shot:hover .shot{transform:scale(1.04)}}
 .project-info{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:1rem 1.5rem;margin-top:1.3rem}
 .project h3{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;letter-spacing:-.015em;line-height:1.05}
 .project-meta{color:var(--muted);margin-top:.25rem}
@@ -128,7 +128,7 @@ html.js .statement:has(.statement-text.in) .statement-img{transform:none}
 /* ================= SERVICES: staggered blocks ================= */
 .blocks{display:grid;gap:1rem;align-items:start}
 .block{display:block;padding:1.6rem;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid var(--line);transition:border-color .4s var(--ease-lux),background .4s var(--ease-lux),box-shadow .4s var(--ease-lux)}
-a.block:hover{border-color:#fff;background:rgba(255,255,255,.1);box-shadow:0 0 40px rgba(255,255,255,.1)}
+@media (hover:hover){a.block:hover{border-color:#fff;background:rgba(255,255,255,.1);box-shadow:0 0 40px rgba(255,255,255,.1)}}
 .block h3{font-size:1.3rem;margin-bottom:.5rem}
 .block p{color:var(--muted)}
 .block .text-link{display:inline-block;margin-top:1rem}
@@ -167,7 +167,8 @@ a.block:hover{border-color:#fff;background:rgba(255,255,255,.1);box-shadow:0 0 4
 .contact{padding-bottom:clamp(3.5rem,8vw,6rem)}
 .contact-list{border-bottom:1px solid var(--line)}
 .contact-list a{display:grid;gap:.2rem;padding:1.25rem .25rem;border-top:1px solid var(--line);transition:background .3s}
-.contact-list a:hover{background:rgba(255,255,255,.06)}
+@media (hover:hover){.contact-list a:hover{background:rgba(255,255,255,.06)}}
+.contact-list a:active{background:rgba(255,255,255,.1)}
 .c-name{font-weight:700;font-size:1.1rem}
 .c-value{color:var(--on-blue);overflow-wrap:anywhere}
 .c-action{justify-self:start;margin-top:.4rem;font-weight:700;font-size:.95rem;padding-bottom:.2rem;
@@ -209,4 +210,15 @@ html.js .project .shot:not(.is-loaded){filter:blur(16px);opacity:.6}
 @media (max-width:999px){
   html.js .reveal{transform:translateY(16px)}
   html.js .reveal-card{transform:translateY(40px)}
+}
+
+/* ---------- phones: swipe dots under the projects, full width final buttons ---------- */
+.rail-dots{display:none}
+@media (max-width:999px){
+  .rail-dots{display:flex;justify-content:center;gap:.5rem;margin-top:.4rem}
+  .rail-dots span{width:.55rem;height:.55rem;border-radius:50%;background:rgba(255,255,255,.35);transition:width .35s var(--ease-lux),background .35s}
+  .rail-dots span.on{width:1.6rem;border-radius:999px;background:#fff}
+}
+@media (max-width:599px){
+  .cta-buttons{flex-direction:column;align-items:stretch;max-width:24rem;margin-inline:auto}
 }

@@ -54,6 +54,25 @@
     else { img.addEventListener('load', done); img.addEventListener('error', done); }
   });
 
+  /* phones: dots under the projects follow the swipe */
+  var rail = document.querySelector('.work-rail');
+  var dots = document.querySelectorAll('.rail-dots span');
+  if (rail && dots.length) {
+    var railTick = false;
+    rail.addEventListener('scroll', function () {
+      if (railTick) return;
+      railTick = true;
+      window.requestAnimationFrame(function () {
+        var card = rail.querySelector('.project');
+        var step = card ? card.getBoundingClientRect().width : rail.clientWidth;
+        var max = rail.scrollWidth - rail.clientWidth;
+        var i = rail.scrollLeft >= max - 4 ? dots.length - 1 : Math.round(rail.scrollLeft / step);
+        dots.forEach(function (d, k) { d.classList.toggle('on', k === i); });
+        railTick = false;
+      });
+    }, { passive: true });
+  }
+
   /* bottom dock: highlight the section on screen */
   var dock = document.querySelector('.dock');
   if (dock && 'IntersectionObserver' in window) {

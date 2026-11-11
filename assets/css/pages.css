@@ -7,8 +7,9 @@ ol{list-style:none}
 
 /* page top */
 .phero{padding:clamp(7.5rem,13vw,10rem) 0 clamp(2.5rem,6vw,4rem)}
-.crumbs ol{display:flex;flex-wrap:wrap;gap:.1rem .5rem;font-size:.95rem;color:rgba(255,255,255,.8);margin-bottom:1.5rem}
+.crumbs ol{display:flex;flex-wrap:wrap;align-items:center;gap:0 .5rem;font-size:.95rem;color:rgba(255,255,255,.8);margin-bottom:.6rem}
 .crumbs li+li::before{content:"/";margin-right:.5rem;opacity:.55}
+.crumbs a{display:inline-flex;align-items:center;min-height:44px;min-width:44px}
 .crumbs a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
 .phero h1{font-size:clamp(2.2rem,5.4vw,4.1rem);line-height:1.06;letter-spacing:-.02em;max-width:20ch;text-wrap:balance}
 .phero .lede{max-width:44rem;margin-top:1.3rem;color:var(--on-blue)}
@@ -49,7 +50,7 @@ ol{list-style:none}
 /* questions */
 .faq{margin-top:1.4rem;border-bottom:1px solid var(--line)}
 .faq details{border-top:1px solid var(--line);padding:1.2rem 0}
-.faq summary{cursor:pointer;font-weight:700;font-size:1.1rem;list-style:none;display:flex;justify-content:space-between;gap:1rem}
+.faq summary{cursor:pointer;font-weight:700;font-size:1.1rem;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;min-height:48px}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::after{content:"+";font-size:1.5rem;line-height:1}
 .faq details[open] summary::after{content:"x";font-size:1.2rem}
@@ -70,7 +71,7 @@ ol{list-style:none}
 .facts div{padding:1rem 0;border-bottom:1px solid var(--line)}
 .facts dt{font-size:.95rem;color:var(--muted);margin-bottom:.2rem}
 .facts dd{font-weight:700}
-.facts a{text-decoration:underline;text-decoration-color:var(--tomato);text-decoration-thickness:2px;text-underline-offset:3px}
+.facts a{display:inline-flex;align-items:center;min-height:44px;text-decoration:underline;text-decoration-color:var(--tomato);text-decoration-thickness:2px;text-underline-offset:3px}
 @media (min-width:820px){.facts{grid-template-columns:repeat(4,1fr);gap:2rem}.facts div{border-bottom:0;padding:1.2rem 0}}
 .cs-text p{color:var(--on-blue);font-size:1.08rem;line-height:1.75;max-width:40rem;margin-bottom:1.1rem}
 .cs-links{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:1.4rem}
@@ -81,3 +82,15 @@ ol{list-style:none}
 .lost .hero-cta{margin-top:2rem;display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap}
 
 @media (max-width:899px){.phero h1{letter-spacing:0}}
+
+@media (max-width:599px){
+  .phero-cta{flex-wrap:nowrap;gap:.6rem}
+  .phero-cta .btn{flex:1 1 0;min-width:0;min-height:3.2rem;padding-inline:.6rem;font-size:.95rem}
+}
+@media (max-width:380px){.phero-cta .btn{padding-inline:.4rem}}
+@media (max-width:340px){.phero-cta .btn{font-size:.9rem}}
+/* page not found: two long labels, so stack them on phones */
+@media (max-width:599px){
+  .lost .hero-cta{flex-direction:column;align-items:stretch;flex-wrap:nowrap;max-width:22rem;margin-inline:auto}
+  .lost .hero-cta .btn{flex:none;font-size:1rem;padding-inline:1.2rem}
+}

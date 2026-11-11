@@ -24,11 +24,15 @@ Other files
   assets/css/mockups.css   browser frame and address bar around screenshots
   assets/css/pages.css     service pages and case studies
   assets/css/legal.css     the legal page
-  assets/js/main.js        menu and footer year
+  assets/js/main.js        navigation that hides on scroll, phone dock, scroll reveals, footer year
   assets/img/              logos, screenshots, favicon icons and the share image
 
 Typefaces
   Bodoni Moda for headlines and Archivo for everything else (loaded from Google Fonts)
+
+Motion
+  One load sequence on the homepage, gentle reveals on scroll and hover effects.
+  All motion switches off when a visitor's device asks for reduced motion.
 
 Common edits
   Page titles and descriptions:  the <title> and description lines at the top of each page

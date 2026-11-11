@@ -23,7 +23,15 @@
   background-position:0 0,-1px -1px,-1px -1px,-1px -1px,-1px -1px;
   -webkit-mask-image:linear-gradient(#000 55%,transparent);mask-image:linear-gradient(#000 55%,transparent);
 }
-.hero-grid{position:relative;z-index:1;display:grid;gap:3rem;align-items:center}
+.hero-photo,.hero-photo img{position:absolute;inset:0;width:100%;height:100%}
+.hero-photo{z-index:0}
+.hero-photo img{object-fit:cover;object-position:62% 50%}
+/* royal blue on the text side, fading to show the desk; blends into the next section at the bottom */
+.hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(32,48,154,.92) 0%,rgba(32,48,154,.78) 34%,rgba(26,40,134,.32) 62%,rgba(20,31,107,.08) 100%),
+    linear-gradient(180deg,rgba(26,40,134,0) 72%,var(--bg-2) 100%)}
+.hero-grid{position:relative;z-index:2;display:grid;gap:3rem;align-items:center}
 .hero h1{font-size:clamp(2.45rem,9.4vw,5.4rem);line-height:1;letter-spacing:-.02em}
 .hero h1 .ln{display:block}
 .hero-sub{max-width:30rem;margin-top:1.4rem;font-size:clamp(1.05rem,1.6vw,1.22rem);line-height:1.6;color:var(--on-blue)}
@@ -51,8 +59,8 @@
 .hero-stage:hover .panel-front{transform:translateY(-8px)}
 .hero-stage:hover .panel-back{transform:translateY(6px)}
 @media (min-width:1000px){
-  .hero-grid{grid-template-columns:45fr 55fr;gap:2.5rem}
-  .hero h1{font-size:clamp(2.6rem,3.85vw,4.4rem)}
+  .hero-grid{grid-template-columns:minmax(0,44rem)}
+  .hero h1{font-size:clamp(3rem,4.6vw,5.3rem)}
   .hero h1 .ln{white-space:nowrap}
   .hero-stage{display:block}
   .hero{min-height:min(100svh,62rem);display:grid;align-items:center}
@@ -64,8 +72,8 @@
   /* the widest line is about 8.3 times the type size, so size it to the screen and keep three lines */
   .hero h1{font-size:min(calc((100vw - 2.5rem) / 8.6),3.6rem);line-height:1.05}
   .hero h1 .ln{white-space:nowrap}
-  /* fainter construction lines so they never cut through letters */
-  .hero-atmos{opacity:.55}
+  .hero-photo img{object-position:50% 60%}
+  .hero::before{background:linear-gradient(180deg,rgba(32,48,154,.92) 0%,rgba(32,48,154,.82) 32%,rgba(26,40,134,.25) 50%,rgba(26,40,134,.3) 60%,rgba(26,40,134,.92) 80%,var(--bg-2) 100%)}
   .hero{padding-top:6.5rem;padding-bottom:2rem}
   .hero-copy{display:flex;flex-direction:column;min-height:calc(100svh - 14rem)}
   .hero-cta{margin-top:auto;padding-top:2rem}
@@ -103,7 +111,18 @@
 }
 
 /* ================= STATEMENT (a pause) ================= */
-.statement{position:relative;overflow:clip;padding:clamp(5rem,14vw,10rem) 0;background:radial-gradient(60% 80% at 20% 50%,rgba(255,255,255,.12),transparent 70%),var(--royal-deep);border-block:1px solid var(--line)}
+.statement{position:relative;overflow:clip;display:grid;align-items:center;min-height:clamp(24rem,46vw,38rem);padding:clamp(5rem,12vw,8rem) 0;background:var(--royal-deep);border-block:1px solid var(--line)}
+/* the photo sits behind; a deep blue fade on the text side keeps every letter readable */
+.statement-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 50%;transition:transform 1.6s var(--ease-lux)}
+.statement::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,19,71,.95) 0%,rgba(12,19,71,.82) 38%,rgba(12,19,71,.3) 72%,rgba(12,19,71,.15) 100%)}
+.statement .wrap{position:relative;z-index:1}
+html.js .statement-img{transform:scale(1.08)}
+html.js .statement:has(.statement-text.in) .statement-img{transform:none}
+@media (max-width:999px){
+  .statement{min-height:min(36rem,88svh);align-items:end;padding-bottom:3.5rem}
+  .statement-img{object-position:72% 50%}
+  .statement::after{background:linear-gradient(180deg,rgba(12,19,71,.35) 0%,rgba(12,19,71,.7) 45%,rgba(12,19,71,.95) 100%)}
+}
 .statement-text{font-size:clamp(2.4rem,6.4vw,5.6rem);line-height:1.02;letter-spacing:-.02em;max-width:16ch}
 
 /* ================= SERVICES: staggered blocks ================= */
@@ -162,7 +181,7 @@ a.block:hover{border-color:#fff;background:rgba(255,255,255,.1);box-shadow:0 0 4
 /* ================= MOTION =================
    Only while JavaScript runs (html.js), so nothing is ever hidden without it.
    One load sequence, gentle reveals on scroll, hovers. All off for reduced motion. */
-html.js .hero-atmos{animation:atmos .6s var(--ease-lux) both}
+html.js .hero-photo{animation:atmos .8s var(--ease-lux) both}
 html.js .hero h1 .ln{animation:lineIn .9s var(--ease-cine) both}
 html.js .hero h1 .ln:nth-child(1){animation-delay:.15s}
 html.js .hero h1 .ln:nth-child(2){animation-delay:.27s}
